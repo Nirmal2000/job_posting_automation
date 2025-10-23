@@ -1,0 +1,10 @@
+{
+  "input": "https://www.linkedin.com/hiring/jobs/4317724303/detail/",
+  "country": "United States",
+  "output": {
+    "jobDetailUrl": "https://www.linkedin.com/job-posting/review/?jobId=4317724303&step=job-settings&trk=nextBestActionHub",
+    "jobId": "4317724303",
+    "jobState": "Active",
+    "status": "updated"
+  }
+}

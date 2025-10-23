@@ -1,0 +1,14 @@
+{
+  "workflow_name": "linkedin_edit_country",
+  "run_time": "2025-10-22T22:08:46.967589+00:00",
+  "input": {
+    "job_detail_url": "https://www.linkedin.com/hiring/jobs/4317712169/detail/",
+    "employee_location": "Canada"
+  },
+  "output": {
+    "jobDetailUrl": "https://www.linkedin.com/job-posting/review/?jobId=4317712169&step=job-settings&trk=nextBestActionHub",
+    "jobId": "4317712169",
+    "jobState": "Active",
+    "status": "updated"
+  }
+}

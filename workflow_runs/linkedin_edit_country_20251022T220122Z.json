@@ -1,0 +1,14 @@
+{
+  "workflow_name": "linkedin_edit_country",
+  "run_time": "2025-10-22T22:01:22.522464+00:00",
+  "input": {
+    "job_detail_url": "https://www.linkedin.com/hiring/jobs/4317712169/detail/",
+    "employee_location": "Canada"
+  },
+  "output": {
+    "jobDetailUrl": "https://www.linkedin.com/hiring/jobs/4317712169/detail/",
+    "jobId": "4317712169",
+    "jobState": "unknown",
+    "status": "job_not_active"
+  }
+}

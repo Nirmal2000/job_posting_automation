@@ -1,0 +1,10 @@
+{
+  "input": "https://www.linkedin.com/hiring/jobs/4317717657/detail/",
+  "country": "Canada",
+  "output": {
+    "jobDetailUrl": "https://www.linkedin.com/job-posting/review/?jobId=4317717657&step=job-settings&trk=nextBestActionHub",
+    "jobId": "4317717657",
+    "jobState": "Active",
+    "status": "updated"
+  }
+}

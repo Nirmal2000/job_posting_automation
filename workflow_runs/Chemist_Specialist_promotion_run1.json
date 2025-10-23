@@ -1,0 +1,19 @@
+{
+  "workflow": "linkedin_job_promotion",
+  "input": {
+    "job_title": "Chemist Specialist",
+    "employee_location": "India",
+    "job_description": "Role Overview\nWe are seeking experienced Chemistry professionals (PhD level) to contribute to the design, evaluation, and enhancement of AI systems replicating real-world chemistry workflows. You will apply deep subject expertise across organic, inorganic, physical, analytical, and biochemical domains to assess AI-generated scientific outputs and ensure academic rigor.\n\nKey Responsibilities\n- Create and review complex chemistry problems across multiple subfields.\n- Evaluate AI-generated responses for accuracy, reasoning, and relevance.\n- Provide detailed written feedback on mechanisms, problem sets, and chemical solutions.\n- Collaborate asynchronously with AI researchers to refine and improve model performance.\n- Maintain scientific precision and consistency in chemistry content used for AI training and evaluation.\n\nIdeal Qualifications\n- PhD in Chemistry or a closely related field.\n- Undergraduate degree from the U.S., UK, Canada, or Europe (preferred).\n- Deep knowledge across organic, inorganic, physical, analytical, and biochemical chemistry.\n- Excellent written communication and analytical skills.\n- Teaching, research, or publication experience is a strong plus.\n\nWork Details\n- Fully remote and asynchronous \u2014 flexible hours.\n- Part-time (~20 hours/week), with potential to extend up to 40 hours/week.\n- Independent contractor engagement.\n\nCompensation: $65\u2013$85/hour USD",
+    "apply_url": "https://work.mercor.com/jobs/list_AAABmL5hBBd6U37o8nNOf7ML?referralCode=b5b1c23c-b43c-4403-83c8-27e33c484fa9&utm_source=referral&utm_medium=share&utm_campaign=job_referral",
+    "card_number": "4160210879592577",
+    "card_expiration": "06/31",
+    "card_security_code": "161",
+    "card_postal_code": "600126"
+  },
+  "output": {
+    "jobDetailUrl": "https://www.linkedin.com/hiring/jobs/4317703937/detail/",
+    "jobId": "4317703937",
+    "jobState": "In review",
+    "status": "submitted"
+  }
+}
