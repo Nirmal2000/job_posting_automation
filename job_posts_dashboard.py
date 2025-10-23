@@ -62,23 +62,30 @@ def main():
     # Select and reorder columns for display
     display_columns = [
         'jobId', 'job_name', 'original_job_title', 'location', 'job_status',
-        'posted_when', 'amount_spent', 'views', 'apply_clicks', 'apply_url'
+        'posted_when', 'amount_spent', 'views', 'apply_clicks', 'jobDetailUrl', 'apply_url'
     ]
 
     # Filter to only columns that exist in the data
     available_columns = [col for col in display_columns if col in df.columns]
 
-    # Reorder columns with apply_url last
-    final_columns = [col for col in available_columns if col != 'apply_url']
+    # Reorder columns with apply_url last, jobDetailUrl second to last
+    final_columns = [col for col in available_columns if col not in ['jobDetailUrl', 'apply_url']]
+    if 'jobDetailUrl' in available_columns:
+        final_columns.append('jobDetailUrl')
     if 'apply_url' in available_columns:
         final_columns.append('apply_url')
 
     df_display = df[final_columns].copy()
 
-    # Format the apply_url column to be clickable HTML links
+    # Format URL columns for LinkColumn display
+    if 'jobDetailUrl' in df_display.columns:
+        df_display['jobDetailUrl'] = df_display['jobDetailUrl'].apply(
+            lambda url: f'{url}#LinkedIn Job' if url else ''
+        )
+
     if 'apply_url' in df_display.columns:
         df_display['apply_url'] = df_display['apply_url'].apply(
-            lambda url: f'<a href="{url}" target="_blank" style="color: #007bff; text-decoration: none;">Apply Url</a>' if url else ''
+            lambda url: f'{url}#Apply Url' if url else ''
         )
 
     # Rename columns for better display
@@ -92,6 +99,7 @@ def main():
         'amount_spent': 'Amount Spent',
         'views': 'Views',
         'apply_clicks': 'Apply Clicks',
+        'jobDetailUrl': 'LinkedIn URL',
         'apply_url': 'Apply Url'
     }
 
@@ -100,47 +108,46 @@ def main():
     # Display the table
     st.subheader("📋 Job Postings Summary")
 
-    # Convert dataframe to HTML for clickable links
     if not df_display.empty:
-        # Convert to HTML table with markdown rendering support
-        html_table = df_display.to_html(
-            index=False,
-            escape=False,  # Allow HTML/markdown in cells
-            table_id="job-posts-table",
-            bold_rows=False
+        st.dataframe(
+            df_display,
+            use_container_width=True,
+            hide_index=True,
+            column_config={
+                "Job ID": st.column_config.TextColumn(
+                    "Job ID",
+                    help="LinkedIn Job ID",
+                    width="small"
+                ),
+                "Amount Spent": st.column_config.TextColumn(
+                    "Amount Spent",
+                    help="Amount spent on job promotion",
+                    width="small"
+                ),
+                "Views": st.column_config.TextColumn(
+                    "Views",
+                    help="Number of job views",
+                    width="small"
+                ),
+                "Apply Clicks": st.column_config.TextColumn(
+                    "Apply Clicks",
+                    help="Number of apply clicks",
+                    width="small"
+                ),
+                "LinkedIn URL": st.column_config.LinkColumn(
+                    "LinkedIn URL",
+                    help="View the original LinkedIn job posting",
+                    width="small",
+                    display_text=r"https://.*?/(.*?)/.*?#(.*)$"
+                ),
+                "Apply Url": st.column_config.LinkColumn(
+                    "Apply Url",
+                    help="Apply for this position",
+                    width="small",
+                    display_text=r"https://.*?/.*?/.*?/(.*?)#(.*)$"
+                )
+            }
         )
-
-        # Add some custom CSS styling
-        st.markdown("""
-        <style>
-        #job-posts-table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        #job-posts-table th {
-            background-color: #f8f9fa;
-            color: #212529;
-            padding: 12px;
-            text-align: left;
-            border-bottom: 2px solid #dee2e6;
-            font-weight: bold;
-        }
-        #job-posts-table td {
-            padding: 12px;
-            border-bottom: 1px solid #dee2e6;
-            vertical-align: top;
-        }
-        #job-posts-table a {
-            color: #007bff;
-            text-decoration: none;
-        }
-        #job-posts-table a:hover {
-            text-decoration: underline;
-        }
-        </style>
-        """, unsafe_allow_html=True)
-
-        st.markdown(html_table, unsafe_allow_html=True)
     else:
         st.info("No job data available to display.")
 
