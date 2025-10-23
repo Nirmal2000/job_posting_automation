@@ -1,0 +1,51 @@
+{
+  "total_requested": 13,
+  "processed": 3,
+  "skipped_existing": 10,
+  "successful": 3,
+  "failed": 0,
+  "results": [
+    {
+      "jobDetailUrl": "https://www.linkedin.com/hiring/jobs/4317707957/detail/",
+      "jobId": "4317707957",
+      "job_name": "Teaching Specialist",
+      "location": "Canada (Remote)",
+      "job_status": "Active",
+      "posted_when": "Posted 1 hour ago",
+      "amount_spent": "\u20b9180.00",
+      "views": "20",
+      "apply_clicks": "2",
+      "status": "extracted",
+      "original_job_title": "Teaching Expert [New Research Project]",
+      "apply_url": ""
+    },
+    {
+      "jobDetailUrl": "https://www.linkedin.com/hiring/jobs/4317415591/detail/",
+      "jobId": "4317415591",
+      "job_name": "Python Developer",
+      "location": "United States (Remote)",
+      "job_status": "Active",
+      "posted_when": "Posted 17 hours ago",
+      "amount_spent": "\u20b9402.24 spent",
+      "views": "344 views",
+      "apply_clicks": "129 Apply clicks",
+      "status": "extracted",
+      "original_job_title": "Rust, JavaScript/TypeScript and Python Engineers (code agent experience)",
+      "apply_url": ""
+    },
+    {
+      "jobDetailUrl": "https://www.linkedin.com/hiring/jobs/4317712169/detail/",
+      "jobId": "4317712169",
+      "job_name": "Python Developer",
+      "location": "Canada (Remote)",
+      "job_status": "Active",
+      "posted_when": "Posted 9 hours ago",
+      "amount_spent": "\u20b9439.40",
+      "views": "127",
+      "apply_clicks": "38",
+      "status": "extracted",
+      "original_job_title": "Rust, JavaScript/TypeScript and Python Engineers (code agent experience)",
+      "apply_url": ""
+    }
+  ]
+}
