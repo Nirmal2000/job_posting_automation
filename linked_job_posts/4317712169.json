@@ -5,9 +5,9 @@
   "location": "Canada (Remote)",
   "job_status": "Active",
   "posted_when": "Posted 9 hours ago",
-  "amount_spent": "\u20b9439.40",
-  "views": "127",
-  "apply_clicks": "38",
+  "amount_spent": 439.4,
+  "views": 127,
+  "apply_clicks": 38,
   "status": "extracted",
   "original_job_title": "Rust, JavaScript/TypeScript and Python Engineers (code agent experience)",
   "apply_url": ""

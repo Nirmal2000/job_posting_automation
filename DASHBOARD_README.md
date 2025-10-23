@@ -5,8 +5,9 @@ A simple Streamlit dashboard to visualize LinkedIn job posting data extracted fr
 ## Features
 
 - 📋 **Job Postings Table**: View all extracted job data in a clean, organized table
-- 📈 **Summary Statistics**: See total jobs, active jobs, views, and apply clicks
+- 📈 **Summary Statistics**: See total jobs, active jobs, total amount spent, views, and apply clicks
 - 🔍 **Detailed View**: Toggle to see full JSON data for individual jobs
+- 🎯 **LinkedIn URL Column**: Clickable links to view the original LinkedIn job posting (displayed as "LinkedIn URL")
 - 🎯 **Apply URL Column**: Clickable links to job applications (displayed as "Apply Url")
 
 ## Installation
@@ -33,7 +34,9 @@ The dashboard reads job data from JSON files in the `linked_job_posts/` director
 python scripts/extract_multiple_jobs.py --job-ids-file inputs/job_ids_list.txt --output-dir linked_job_posts
 ```
 
-**Smart Extraction**: The script automatically skips jobs that already exist in the output directory. Use `--force` to re-extract all jobs:
+**Smart Extraction**: The script automatically skips jobs that already exist in the output directory. Use `--force` to re-extract all jobs.
+
+**Data Types**: The workflow extracts numeric values correctly - amount spent as float, views and apply clicks as integers.
 
 ```bash
 # Normal run (skips existing jobs)
@@ -60,6 +63,7 @@ python scripts/extract_multiple_jobs.py --job-ids-file inputs/job_ids_list.txt -
 ### Summary Statistics
 - Total number of jobs processed
 - Number of active jobs
+- **Total amount spent** on all job promotions (₹XXX.XX)
 - Total views across all jobs
 - Total apply clicks across all jobs
 
@@ -86,12 +90,14 @@ Toggle the "Show Detailed JSON Data" checkbox to see the complete raw data for a
 - **Port issues**: Streamlit runs on port 8501 by default, make sure it's available
 - **Jobs not extracting**: Check if jobs already exist (script skips existing by default). Use `--force` to re-extract all jobs
 - **Empty results**: Verify job IDs are valid and accessible on LinkedIn
+- **Data type issues**: Numeric values (amount spent, views, apply clicks) are now properly extracted as numbers, not strings
+- **Total Amount Spent**: Shows the sum of all job promotion budgets (₹XXX.XX format)
 
 ## Example Output
 
 The dashboard will display a table similar to:
 
-| Job ID | Job Name | Original Title | Location | Status | Posted | Amount Spent | Views | Apply Clicks | Apply Url |
-|--------|----------|----------------|----------|--------|---------|--------------|-------|--------------|-----------|
-| 4317721466 | AI Evaluator | Generalist Evaluator Expert | United States (Remote) | Active | Posted 6 hours ago | ₹175.50 | 44 | 22 | Apply Url |
-| 4317716560 | AI Trainer | Generalist Data Annotation Expert | United States (Remote) | Active | Posted 6 hours ago | ₹234.00 spent | 33 views | 17 | Apply Url |
+| Job ID | Job Name | Original Title | Location | Status | Posted | Amount Spent | Views | Apply Clicks | LinkedIn URL | Apply Url |
+|--------|----------|----------------|----------|--------|---------|--------------|-------|--------------|--------------|-----------|
+| 4317721466 | AI Evaluator | Generalist Evaluator Expert | United States (Remote) | Active | Posted 6 hours ago | 175.5 | 44 | 22 | LinkedIn URL | Apply Url |
+| 4317716560 | AI Trainer | Generalist Data Annotation Expert | United States (Remote) | Active | Posted 6 hours ago | 234.0 | 33 | 17 | LinkedIn URL | Apply Url |

@@ -35,9 +35,9 @@ class JobExtractSchema(BaseModel):
     location: str = Field(..., description="The job location")
     job_status: str = Field(..., description="Job status - either 'Active' or 'In Review'")
     posted_when: str = Field(..., description="When the job was posted (e.g., '2 days ago', '5 hrs ago')")
-    amount_spent: str = Field(..., description="Amount spent on job promotion")
-    views: str = Field(..., description="Number of job views")
-    apply_clicks: str = Field(..., description="Number of apply clicks")
+    amount_spent: float = Field(..., description="Amount spent on job promotion (numeric value)")
+    views: int = Field(..., description="Number of job views (numeric value)")
+    apply_clicks: int = Field(..., description="Number of apply clicks (numeric value)")
 
 
 def parse_digits_from_url(url: str) -> str:
@@ -166,7 +166,7 @@ async def _execute_workflow(
     print("Extracting job data...")
     try:
         extracted_data = await page.extract(
-            instruction="Extract the job name, location, status, posting time, amount spent, views, and apply clicks from this LinkedIn job posting page",
+            instruction="Extract the job name, location, status, posting time, amount spent (as a number), views (as a number), and apply clicks (as a number) from this LinkedIn job posting page. Return only the numeric values for amount spent, views, and apply clicks without any text or currency symbols.",
             schema=JobExtractSchema,
             iframes=True
         )
@@ -180,9 +180,9 @@ async def _execute_workflow(
             "location": extracted_data.location,
             "job_status": extracted_data.job_status,
             "posted_when": extracted_data.posted_when,
-            "amount_spent": extracted_data.amount_spent,
-            "views": extracted_data.views,
-            "apply_clicks": extracted_data.apply_clicks,
+            "amount_spent": float(extracted_data.amount_spent),
+            "views": int(extracted_data.views),
+            "apply_clicks": int(extracted_data.apply_clicks),
             "status": "extracted"
         }
 
@@ -241,9 +241,9 @@ def save_run_record(input_data: dict[str, str], output_data: dict[str, Any]) -> 
         "location": output_data.get("location", ""),
         "job_status": output_data.get("job_status", ""),
         "posted_when": output_data.get("posted_when", ""),
-        "amount_spent": output_data.get("amount_spent", ""),
-        "views": output_data.get("views", ""),
-        "apply_clicks": output_data.get("apply_clicks", ""),
+        "amount_spent": output_data.get("amount_spent", 0.0),
+        "views": output_data.get("views", 0),
+        "apply_clicks": output_data.get("apply_clicks", 0),
         "job_url": output_data.get("jobDetailUrl", ""),
         "job_id": job_id
     }

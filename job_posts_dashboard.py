@@ -138,13 +138,13 @@ def main():
                     "LinkedIn URL",
                     help="View the original LinkedIn job posting",
                     width="small",
-                    display_text=r"https://.*?/(.*?)/.*?#(.*)$"
+                    display_text=r"#(.*)$"
                 ),
                 "Apply Url": st.column_config.LinkColumn(
                     "Apply Url",
                     help="Apply for this position",
                     width="small",
-                    display_text=r"https://.*?/.*?/.*?/(.*?)#(.*)$"
+                    display_text=r"#(.*)$"
                 )
             }
         )
@@ -155,7 +155,7 @@ def main():
     st.markdown("---")
     st.subheader("📈 Summary Statistics")
 
-    col1, col2, col3, col4 = st.columns(4)
+    col1, col2, col3, col4, col5 = st.columns(5)
 
     with col1:
         total_jobs = len(job_data)
@@ -166,11 +166,15 @@ def main():
         st.metric("Active Jobs", active_jobs)
 
     with col3:
-        total_views = sum(int(job.get('views', '0').split()[0]) for job in job_data if job.get('views'))
-        st.metric("Total Views", total_views)
+        total_amount = sum(float(job.get('amount_spent', 0)) for job in job_data if job.get('amount_spent') is not None)
+        st.metric("Total Amount Spent", f"₹{total_amount:.2f}")
 
     with col4:
-        total_applies = sum(int(job.get('apply_clicks', '0').split()[0]) for job in job_data if job.get('apply_clicks'))
+        total_views = sum(int(job.get('views', 0)) for job in job_data if job.get('views'))
+        st.metric("Total Views", total_views)
+
+    with col5:
+        total_applies = sum(int(job.get('apply_clicks', 0)) for job in job_data if job.get('apply_clicks'))
         st.metric("Total Apply Clicks", total_applies)
 
     # Show detailed view toggle
